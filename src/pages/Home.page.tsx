@@ -1,7 +1,9 @@
+import { Title } from '@mantine/core';
+
 export function HomePage() {
   return (
     <>
-      <h1>hello</h1>
+      <Title>fdfgdgf</Title>
     </>
   );
 }
