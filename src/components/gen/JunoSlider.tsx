@@ -1,53 +1,44 @@
 import { useState } from 'react';
-import { Group, Stack, Text, Tooltip } from '@mantine/core';
+import { Group, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
 
-interface Props {
-  label: string;
-}
-
-const JunoSlider = ({ label }: Props) => {
+const JunoSlider = () => {
   const [value, setValue] = useState(0.2);
   const sliderValue = Math.floor(value * 255);
   const { ref } = useMove(({ y }) => setValue(1 - y));
 
   return (
-    <Stack align="center">
-      <Text size="xs" fw="normal" w={42} ta="center" lh="1.2">
-        {label.toUpperCase()}
-      </Text>
-      <Tooltip label={sliderValue} position="bottom" offset={15} closeDelay={800}>
-        <Group justify="center" w={32}>
+    <Tooltip label={sliderValue} position="bottom" offset={15} closeDelay={800}>
+      <Group justify="center" w={32}>
+        <div
+          ref={ref}
+          style={{
+            width: 10,
+            height: 120,
+            backgroundColor: 'var(--mantine-color-dark-9)',
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: 100,
+            alignItems: 'center',
+            cursor: 'pointer',
+          }}
+        >
+          {/* Filled bar */}
           <div
-            ref={ref}
             style={{
-              width: 10,
-              height: 120,
+              position: 'absolute',
+              bottom: 0,
+              height: `${value * 100}%`,
+              width: '100%',
               backgroundColor: 'var(--mantine-color-dark-9)',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
               borderRadius: 100,
-              alignItems: 'center',
-              cursor: 'pointer',
             }}
-          >
-            {/* Filled bar */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                height: `${value * 100}%`,
-                width: '100%',
-                backgroundColor: 'var(--mantine-color-dark-9)',
-                borderRadius: 100,
-              }}
-            />
-            <JunoSliderThumb value={value} />
-          </div>
-        </Group>
-      </Tooltip>
-    </Stack>
+          />
+          <JunoSliderThumb value={value} />
+        </div>
+      </Group>
+    </Tooltip>
   );
 };
 

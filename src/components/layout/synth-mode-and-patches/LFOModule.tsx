@@ -1,14 +1,11 @@
-import { Group } from '@mantine/core';
-import JunoSlider from '@/components/gen/JunoSlider';
+import JunoSliderGroup, { SliderController } from '../gen/JunoSliderGroup';
 import ModuleBox from '../gen/ModuleBox';
 
 const LFOModule = () => {
+  const controllers: SliderController[] = [{ label: 'Rate' }, { label: 'Delay time' }];
   return (
     <ModuleBox title="LFO">
-      <Group align="end" gap={0}>
-        <JunoSlider label="Rate" />
-        <JunoSlider label="Delay time" />
-      </Group>
+      <JunoSliderGroup controllers={controllers} />
     </ModuleBox>
   );
 };
