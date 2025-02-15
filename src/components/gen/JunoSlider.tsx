@@ -34,24 +34,7 @@ const JunoSlider = () => {
               borderRadius: 100,
             }}
           />
-
-          {/* Thumb */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: `calc(${value * 100}% - 8px)`,
-              borderRadius: 2,
-              width: 32,
-              height: 16,
-              backgroundColor: 'var(--mantine-color-dark-3  )',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
-            <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
-          </div>
+          <JunoSliderThumb value={value} />
         </div>
         <span>{sliderValue}</span>
       </Group>
@@ -60,3 +43,24 @@ const JunoSlider = () => {
 };
 
 export default JunoSlider;
+
+const JunoSliderThumb = ({ value }: { value: number }) => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        bottom: `calc(${value * 100}% - 8px)`,
+        borderRadius: 2,
+        width: 32,
+        height: 16,
+        backgroundColor: 'var(--mantine-color-dark-3  )',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
+      <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
+    </div>
+  );
+};
