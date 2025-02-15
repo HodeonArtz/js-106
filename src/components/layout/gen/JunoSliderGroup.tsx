@@ -13,19 +13,7 @@ interface Props {
 const JunoSliderGroup = ({ controllers }: Props) => {
   return (
     <Group align="end" justify="center" gap={0} pos="relative">
-      <Stack
-        gap={0}
-        pos="absolute"
-        bottom={0}
-        h={SLIDER_HEIGHT}
-        w="100%"
-        py={SLIDER_PADDING}
-        justify="space-between"
-      >
-        {Array.from(Array(10).keys()).map((k) => {
-          return <hr key={k} style={{ margin: 0 }} />;
-        })}
-      </Stack>
+      <Lines />
       {controllers.map(({ label }, i) => {
         return (
           <Stack align="center" key={i}>
@@ -41,3 +29,32 @@ const JunoSliderGroup = ({ controllers }: Props) => {
 };
 
 export default JunoSliderGroup;
+
+const Lines = () => {
+  const boldLines = [1, 6, 11];
+  return (
+    <Stack
+      gap={0}
+      pos="absolute"
+      bottom={0}
+      h={SLIDER_HEIGHT}
+      w="100%"
+      py={SLIDER_PADDING}
+      justify="space-between"
+    >
+      {Array.from(Array(12).keys()).map((k) => {
+        return (
+          <div
+            key={k}
+            style={{
+              margin: 0,
+              width: '100%',
+              height: boldLines.includes(k) ? 3 : 1,
+              backgroundColor: 'var(--mantine-color-gray-4)',
+            }}
+          />
+        );
+      })}
+    </Stack>
+  );
+};
