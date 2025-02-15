@@ -1,6 +1,6 @@
 import { Group, Stack, Text } from '@mantine/core';
 import JunoSlider from '@/components/gen/JunoSlider';
-import { SLIDER_HEIGHT, SLIDER_PADDING } from '@/components/Sizes';
+import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '@/components/Sizes';
 
 export type SliderController = {
   label: string;
@@ -40,7 +40,7 @@ const Lines = () => {
       bottom={0}
       h={SLIDER_HEIGHT}
       w="100%"
-      py={SLIDER_PADDING}
+      py={SLIDER_Y_PADDING}
       justify="space-between"
     >
       {Array.from(Array(11).keys()).map((k) => {

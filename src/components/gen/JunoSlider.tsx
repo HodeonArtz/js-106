@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Group, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
-import { SLIDER_HEIGHT, SLIDER_PADDING } from '../Sizes';
+import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '../Sizes';
 
 interface Props {
   allowNegativeValues?: boolean;
@@ -31,7 +31,7 @@ const JunoSlider = ({ allowNegativeValues = false }: Props) => {
             ref={ref}
             style={{
               width: 10,
-              height: `calc(100% - ${SLIDER_PADDING * 2 + 3}px)`,
+              height: `calc(100% - ${SLIDER_Y_PADDING * 2 + 3}px)`,
               position: 'absolute',
               display: 'flex',
               flexDirection: 'column',
