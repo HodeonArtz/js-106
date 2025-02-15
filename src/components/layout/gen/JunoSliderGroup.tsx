@@ -4,6 +4,7 @@ import { SLIDER_HEIGHT, SLIDER_PADDING } from '@/components/Sizes';
 
 export type SliderController = {
   label: string;
+  allowNegativeValues?: boolean;
 };
 
 interface Props {
@@ -14,13 +15,13 @@ const JunoSliderGroup = ({ controllers }: Props) => {
   return (
     <Group align="end" justify="center" gap={0} pos="relative">
       <Lines />
-      {controllers.map(({ label }, i) => {
+      {controllers.map(({ label, allowNegativeValues = false }, i) => {
         return (
           <Stack align="center" key={i}>
             <Text size="xs" fw="normal" w={42} ta="center" lh="1.2">
               {label.toUpperCase()}
             </Text>
-            <JunoSlider />
+            <JunoSlider allowNegativeValues={allowNegativeValues} />
           </Stack>
         );
       })}
@@ -31,7 +32,7 @@ const JunoSliderGroup = ({ controllers }: Props) => {
 export default JunoSliderGroup;
 
 const Lines = () => {
-  const boldLines = [1, 6, 11];
+  const boldLines = [0, 5, 10];
   return (
     <Stack
       gap={0}
@@ -42,7 +43,7 @@ const Lines = () => {
       py={SLIDER_PADDING}
       justify="space-between"
     >
-      {Array.from(Array(12).keys()).map((k) => {
+      {Array.from(Array(11).keys()).map((k) => {
         return (
           <div
             key={k}

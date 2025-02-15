@@ -3,9 +3,13 @@ import { Group, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
 import { SLIDER_HEIGHT, SLIDER_PADDING } from '../Sizes';
 
-const JunoSlider = () => {
+interface Props {
+  allowNegativeValues?: boolean;
+}
+
+const JunoSlider = ({ allowNegativeValues = false }: Props) => {
   const [value, setValue] = useState(0.2);
-  const sliderValue = Math.floor(value * 255);
+  const sliderValue = Math.floor(value * 255) - (allowNegativeValues ? 128 : 0);
   const { ref } = useMove(({ y }) => setValue(1 - y));
 
   return (
