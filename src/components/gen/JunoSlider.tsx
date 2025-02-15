@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import { Group, Tooltip } from '@mantine/core';
+import { Group, Stack, Text, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
 
-const JunoSlider = () => {
+interface Props {
+  label: string;
+}
+
+const JunoSlider = ({ label }: Props) => {
   const [value, setValue] = useState(0.2);
   const sliderValue = Math.floor(value * 255);
   const { ref } = useMove(({ y }) => setValue(1 - y));
 
   return (
-    <>
+    <Stack align="center">
+      <Text size="sm" fw="normal" w={42} ta="center" lh="1.2">
+        {label.toUpperCase()}
+      </Text>
       <Tooltip label={sliderValue} position="bottom" offset={15} closeDelay={800}>
         <Group justify="center" w={32}>
           <div
@@ -40,7 +47,7 @@ const JunoSlider = () => {
           </div>
         </Group>
       </Tooltip>
-    </>
+    </Stack>
   );
 };
 
