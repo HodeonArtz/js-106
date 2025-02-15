@@ -1,15 +1,22 @@
-import { Box, Center, Stack, Text } from '@mantine/core';
+import { ReactNode } from 'react';
+import { Stack, Text } from '@mantine/core';
 
-const ModuleBox = () => {
+interface Props {
+  title: string;
+  children: ReactNode;
+}
+
+const ModuleBox = ({ title, children }: Props) => {
   return (
     <Stack align="stretch">
-      <Box bg="red">
-        <Center>
-          <Text size="xl" fw="bold">
-            LFO
-          </Text>
-        </Center>
-      </Box>
+      <Stack bg="red" align="center">
+        <Text size="xl" fw="bold">
+          {title}
+        </Text>
+      </Stack>
+      <Stack align="center" p="lg">
+        {children}
+      </Stack>
     </Stack>
   );
 };
