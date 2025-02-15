@@ -8,13 +8,13 @@ interface Props {
 
 const ModuleBox = ({ title, children }: Props) => {
   return (
-    <Stack align="stretch">
+    <Stack align="stretch" gap="xs">
       <Stack bg="red" align="center">
         <Text size="xl" fw="bold">
           {title}
         </Text>
       </Stack>
-      <Stack align="center" p="lg">
+      <Stack align="center" p="xs">
         {children}
       </Stack>
     </Stack>

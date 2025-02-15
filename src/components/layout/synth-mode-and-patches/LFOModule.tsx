@@ -5,7 +5,7 @@ import ModuleBox from '../gen/ModuleBox';
 const LFOModule = () => {
   return (
     <ModuleBox title="LFO">
-      <Group align="end">
+      <Group align="end" gap={0}>
         <JunoSlider label="Rate" />
         <JunoSlider label="Delay time" />
       </Group>
