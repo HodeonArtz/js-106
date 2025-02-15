@@ -3,7 +3,7 @@ import LFOModule from './synth-mode-and-patches/LFOModule';
 
 const Panel = () => {
   return (
-    <Grid>
+    <Grid style={{ backgroundColor: 'var(--mantine-color-dark-7)' }}>
       <Grid.Col span="content">
         <LFOModule />
       </Grid.Col>
