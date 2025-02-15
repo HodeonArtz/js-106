@@ -4,6 +4,7 @@ import { useMove } from '@mantine/hooks';
 
 const JunoSlider = () => {
   const [value, setValue] = useState(0.2);
+  const sliderValue = Math.floor(value * 255);
   const { ref } = useMove(({ y }) => setValue(1 - y));
 
   return (
@@ -52,6 +53,7 @@ const JunoSlider = () => {
             <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
           </div>
         </div>
+        <span>{sliderValue}</span>
       </Group>
     </>
   );
