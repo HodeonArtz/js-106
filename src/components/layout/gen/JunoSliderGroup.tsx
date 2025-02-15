@@ -51,7 +51,7 @@ const Lines = () => {
               margin: 0,
               width: '100%',
               height: boldLines.includes(k) ? 3 : 1,
-              backgroundColor: 'var(--mantine-color-gray-4)',
+              backgroundColor: 'var(--mantine-color-gray-5)',
             }}
           />
         );

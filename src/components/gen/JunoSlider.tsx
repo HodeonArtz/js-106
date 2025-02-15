@@ -31,7 +31,7 @@ const JunoSlider = ({ allowNegativeValues = false }: Props) => {
             ref={ref}
             style={{
               width: 10,
-              height: `calc(100% - ${SLIDER_PADDING * 2 + 1}px)`,
+              height: `calc(100% - ${SLIDER_PADDING * 2 + 3}px)`,
               position: 'absolute',
               display: 'flex',
               flexDirection: 'column',
