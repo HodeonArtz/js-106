@@ -1,9 +1,11 @@
-import { Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
+import Panel from '@/components/layout/Panel';
 
 export function HomePage() {
   return (
-    <>
-      <Title>fdfgdgf</Title>
-    </>
+    <Container>
+      <Title>JS - 106</Title>
+      <Panel />
+    </Container>
   );
 }
