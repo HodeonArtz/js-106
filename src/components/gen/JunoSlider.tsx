@@ -13,7 +13,7 @@ const JunoSlider = ({ label }: Props) => {
 
   return (
     <Stack align="center">
-      <Text size="sm" fw="normal" w={42} ta="center" lh="1.2">
+      <Text size="xs" fw="normal" w={42} ta="center" lh="1.2">
         {label.toUpperCase()}
       </Text>
       <Tooltip label={sliderValue} position="bottom" offset={15} closeDelay={800}>
