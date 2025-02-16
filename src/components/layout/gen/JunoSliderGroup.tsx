@@ -38,21 +38,20 @@ const Lines = () => {
       gap={0}
       pos="absolute"
       bottom={0}
-      h={SLIDER_HEIGHT}
       w="100%"
-      py={SLIDER_Y_PADDING}
       justify="space-between"
+      h={SLIDER_HEIGHT}
+      py={SLIDER_Y_PADDING}
     >
       {Array.from(Array(11).keys()).map((k) => {
         return (
           <div
             key={k}
             style={{
-              margin: 0,
-              width: '100%',
               height: boldLines.includes(k) ? 3 : 1,
               backgroundColor: 'var(--mantine-color-gray-5)',
             }}
+            className="m-0 w-full"
           />
         );
       })}

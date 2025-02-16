@@ -17,36 +17,24 @@ const JunoSlider = ({ allowNegativeValues = false }: Props) => {
       <Group justify="center" w={32}>
         <div
           style={{
-            width: 10,
             height: SLIDER_HEIGHT,
             backgroundColor: 'var(--mantine-color-dark-9)',
-            borderRadius: 100,
-            position: 'relative',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
           }}
+          className="w-2.5 rounded-full relative cursor-pointer flex items-center"
         >
           <div
             ref={ref}
             style={{
-              width: 10,
               height: `calc(100% - ${SLIDER_Y_PADDING * 2 + 3}px)`,
-              position: 'absolute',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
             }}
+            className="w-2.5 absolute flex flex-col items-center"
           >
             <div
               style={{
-                position: 'absolute',
-                bottom: 0,
                 height: `${value * 100}%`,
-                width: '100%',
                 backgroundColor: 'var(--mantine-color-dark-9)',
-                borderRadius: 100,
               }}
+              className="absolute bottom-0 w-full rounded-full "
             />
             <JunoSliderThumb value={value} />
           </div>
@@ -62,17 +50,10 @@ const JunoSliderThumb = ({ value }: { value: number }) => {
   return (
     <div
       style={{
-        position: 'absolute',
         bottom: `calc(${value * 100}% - 8px)`,
-        borderRadius: 2,
-        width: 32,
-        height: 16,
-        backgroundColor: 'var(--mantine-color-dark-4  )',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        cursor: 'pointer',
+        backgroundColor: 'var(--mantine-color-dark-4 )',
       }}
+      className="absolute rounded-sm w-8 h-4 justify-between flex items-center cursor-pointer"
     >
       <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
       <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
