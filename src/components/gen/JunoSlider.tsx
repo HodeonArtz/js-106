@@ -67,7 +67,7 @@ const JunoSliderThumb = ({ value }: { value: number }) => {
         borderRadius: 2,
         width: 32,
         height: 16,
-        backgroundColor: 'var(--mantine-color-dark-3  )',
+        backgroundColor: 'var(--mantine-color-dark-4  )',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
