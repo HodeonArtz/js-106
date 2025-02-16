@@ -13,7 +13,7 @@ interface Props {
 
 const JunoSliderGroup = ({ controllers }: Props) => {
   return (
-    <Group align="end" justify="center" gap={0} pos="relative">
+    <Group align="end" justify="center" gap={0} pos="relative" mx="sm">
       <Lines />
       {controllers.map(({ label, allowNegativeValues = false }, i) => {
         return (
@@ -42,19 +42,38 @@ const Lines = () => {
       justify="space-between"
       h={SLIDER_HEIGHT}
       py={SLIDER_Y_PADDING}
+      align="center"
     >
-      {Array.from(Array(11).keys()).map((k) => {
-        return (
-          <div
-            key={k}
-            style={{
-              height: boldLines.includes(k) ? 3 : 1,
-              backgroundColor: 'var(--mantine-color-gray-5)',
-            }}
-            className="m-0 w-full"
-          />
-        );
-      })}
+      {Array.from(Array(11).keys())
+        .sort((a, b) => b - a)
+        .map((k) => {
+          const isLineHighLighted = boldLines.includes(k);
+          return (
+            <div
+              key={k}
+              style={{
+                height: isLineHighLighted ? 3 : 1,
+                backgroundColor: 'var(--mantine-color-gray-5)',
+                width: '100%',
+              }}
+              className="m-0 relative w-full flex items-center justify-center"
+            >
+              <div
+                style={{ width: `${125 + 15 * (k.toString().length - 1)}%` }}
+                className="flex absolute items-center justify-between"
+              >
+                {isLineHighLighted ? (
+                  <>
+                    <Text size="xs">{k}</Text>
+                    <Text size="xs">{k}</Text>
+                  </>
+                ) : (
+                  ''
+                )}
+              </div>
+            </div>
+          );
+        })}
     </Stack>
   );
 };
