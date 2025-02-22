@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
 import { Group, Stack, Text } from '@mantine/core';
+import { useHover } from '@mantine/hooks';
 import JunoSlider from '@/components/gen/JunoSlider';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '@/components/Sizes';
 
@@ -20,9 +21,10 @@ interface Props {
 }
 
 const JunoSliderGroup = ({ controllers, allowNegativeValues = false }: Props) => {
+  const { hovered, ref } = useHover();
   return (
-    <Group align="end" justify="center" gap={0} pos="relative" mx="sm">
-      <Lines centeredRange={allowNegativeValues} />
+    <Group ref={ref} align="end" justify="center" gap={0} pos="relative" mx="sm">
+      <Lines centeredRange={allowNegativeValues} areLabelsShown={hovered} />
       {controllers.map(({ label, allowNegativeValues = false }, i) => {
         return (
           <Stack align="center" key={i}>
@@ -43,7 +45,13 @@ const LineLabel = ({ children }: { children: string | ReactNode }) => (
   <Text size="xs">{children}</Text>
 );
 
-const Lines = ({ centeredRange }: { centeredRange: boolean }) => {
+const Lines = ({
+  centeredRange,
+  areLabelsShown,
+}: {
+  centeredRange: boolean;
+  areLabelsShown: boolean;
+}) => {
   const fullRangeLines: HighlightedLine[] = [
     { label: <LineLabel>0</LineLabel>, position: 0 },
     { label: <LineLabel>5</LineLabel>, position: 5 },
@@ -86,23 +94,25 @@ const Lines = ({ centeredRange }: { centeredRange: boolean }) => {
               }}
               className="relative m-0 flex w-full items-center justify-center"
             >
-              <div
-                style={{ width: `${128 + 15}%` }}
-                className="absolute flex items-center justify-between"
-              >
-                {highLightedLine ? (
-                  <>
-                    <Group w={14} justify="end" ta="right">
-                      {highLightedLine.label}
-                    </Group>
-                    <Group w={14} ta="left">
-                      {highLightedLine.label}
-                    </Group>
-                  </>
-                ) : (
-                  ''
-                )}
-              </div>
+              {areLabelsShown && (
+                <div
+                  style={{ width: `${128 + 15}%` }}
+                  className="absolute flex items-center justify-between"
+                >
+                  {highLightedLine ? (
+                    <>
+                      <Group w={14} justify="end" ta="right">
+                        {highLightedLine.label}
+                      </Group>
+                      <Group w={14} ta="left">
+                        {highLightedLine.label}
+                      </Group>
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
