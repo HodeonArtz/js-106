@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
-import { Group, Stack, Text } from '@mantine/core';
+import { Group, Stack, Text, Transition } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import JunoSlider from '@/components/gen/JunoSlider';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '@/components/Sizes';
@@ -94,22 +94,27 @@ const Lines = ({
               }}
               className="relative m-0 flex w-full items-center justify-center"
             >
-              {areLabelsShown && (
-                <div
-                  style={{ width: `${128 + 15}%` }}
-                  className="absolute flex items-center justify-between"
+              {highLightedLine && (
+                <Transition
+                  mounted={areLabelsShown}
+                  keepMounted
+                  duration={150}
+                  timingFunction="ease"
                 >
-                  {highLightedLine && (
-                    <>
+                  {(style) => (
+                    <div
+                      style={{ width: `${128 + 15}%`, ...style }}
+                      className="absolute flex items-center justify-between"
+                    >
                       <Group w={14} justify="end" ta="right">
                         {highLightedLine.label}
                       </Group>
                       <Group w={14} ta="left">
                         {highLightedLine.label}
                       </Group>
-                    </>
+                    </div>
                   )}
-                </div>
+                </Transition>
               )}
             </div>
           );
