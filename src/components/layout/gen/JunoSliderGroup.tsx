@@ -99,7 +99,7 @@ const Lines = ({
                   style={{ width: `${128 + 15}%` }}
                   className="absolute flex items-center justify-between"
                 >
-                  {highLightedLine ? (
+                  {highLightedLine && (
                     <>
                       <Group w={14} justify="end" ta="right">
                         {highLightedLine.label}
@@ -108,8 +108,6 @@ const Lines = ({
                         {highLightedLine.label}
                       </Group>
                     </>
-                  ) : (
-                    ''
                   )}
                 </div>
               )}
