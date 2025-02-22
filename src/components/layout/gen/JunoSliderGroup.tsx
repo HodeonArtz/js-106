@@ -39,20 +39,24 @@ const JunoSliderGroup = ({ controllers, allowNegativeValues = false }: Props) =>
 
 export default JunoSliderGroup;
 
+const LineLabel = ({ children }: { children: string | ReactNode }) => (
+  <Text size="xs">{children}</Text>
+);
+
 const Lines = ({ centeredRange }: { centeredRange: boolean }) => {
   const fullRangeLines: HighlightedLine[] = [
-    { label: <Text>0</Text>, position: 0 },
-    { label: <Text>5</Text>, position: 5 },
-    { label: <Text>10</Text>, position: 10 },
+    { label: <LineLabel>0</LineLabel>, position: 0 },
+    { label: <LineLabel>5</LineLabel>, position: 5 },
+    { label: <LineLabel>10</LineLabel>, position: 10 },
   ];
   const centeredRangeLines: HighlightedLine[] = [
     {
-      label: <IconMinus size={14} stroke={2} />,
+      label: <IconMinus size={12} stroke={2} />,
       position: 0,
     },
-    { label: <Text>0</Text>, position: 5 },
+    { label: <LineLabel>0</LineLabel>, position: 5 },
     {
-      label: <IconPlus size={14} stroke={2} />,
+      label: <IconPlus size={12} stroke={2} />,
       position: 10,
     },
   ];
