@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
 import { Group, Stack, Text } from '@mantine/core';
 import JunoSlider from '@/components/gen/JunoSlider';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '@/components/Sizes';
@@ -7,14 +9,20 @@ export type SliderController = {
   allowNegativeValues?: boolean;
 };
 
+type HighlightedLine = {
+  label: string | ReactNode;
+  position: number;
+};
+
 interface Props {
   controllers: SliderController[];
+  allowNegativeValues?: boolean;
 }
 
-const JunoSliderGroup = ({ controllers }: Props) => {
+const JunoSliderGroup = ({ controllers, allowNegativeValues = false }: Props) => {
   return (
     <Group align="end" justify="center" gap={0} pos="relative" mx="sm">
-      <Lines />
+      <Lines centeredRange={allowNegativeValues} />
       {controllers.map(({ label, allowNegativeValues = false }, i) => {
         return (
           <Stack align="center" key={i}>
@@ -31,8 +39,24 @@ const JunoSliderGroup = ({ controllers }: Props) => {
 
 export default JunoSliderGroup;
 
-const Lines = () => {
-  const boldLines = [0, 5, 10];
+const Lines = ({ centeredRange }: { centeredRange: boolean }) => {
+  const fullRangeLines: HighlightedLine[] = [
+    { label: <Text>0</Text>, position: 0 },
+    { label: <Text>5</Text>, position: 5 },
+    { label: <Text>10</Text>, position: 10 },
+  ];
+  const centeredRangeLines: HighlightedLine[] = [
+    {
+      label: <IconMinus size={14} stroke={2} />,
+      position: 0,
+    },
+    { label: <Text>0</Text>, position: 5 },
+    {
+      label: <IconPlus size={14} stroke={2} />,
+      position: 10,
+    },
+  ];
+  const boldLines = centeredRange ? centeredRangeLines : fullRangeLines;
   return (
     <Stack
       gap={0}
@@ -47,25 +71,29 @@ const Lines = () => {
       {Array.from(Array(11).keys())
         .sort((a, b) => b - a)
         .map((k) => {
-          const isLineHighLighted = boldLines.includes(k);
+          const highLightedLine = boldLines.find((line) => line.position === k);
           return (
             <div
               key={k}
               style={{
-                height: isLineHighLighted ? 3 : 1,
+                height: highLightedLine ? 3 : 1,
                 backgroundColor: 'var(--mantine-color-gray-5)',
                 width: '100%',
               }}
-              className="m-0 relative w-full flex items-center justify-center"
+              className="relative m-0 flex w-full items-center justify-center"
             >
               <div
-                style={{ width: `${125 + 15 * (k.toString().length - 1)}%` }}
-                className="flex absolute items-center justify-between"
+                style={{ width: `${128 + 15}%` }}
+                className="absolute flex items-center justify-between"
               >
-                {isLineHighLighted ? (
+                {highLightedLine ? (
                   <>
-                    <Text size="xs">{k}</Text>
-                    <Text size="xs">{k}</Text>
+                    <Group w={14} justify="end" ta="right">
+                      {highLightedLine.label}
+                    </Group>
+                    <Group w={14} ta="left">
+                      {highLightedLine.label}
+                    </Group>
                   </>
                 ) : (
                   ''
