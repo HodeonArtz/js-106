@@ -14,7 +14,7 @@ const ModuleBox = ({ title, children }: Props) => {
           {title}
         </Text>
       </Stack>
-      <Stack align="center" p="xs">
+      <Stack align="center" p="xs" h={205}>
         {children}
       </Stack>
     </Stack>

@@ -6,12 +6,12 @@ const buttonColors = {
   orange: '#ffbe0d',
 };
 
-interface Props extends PolymorphicComponentProps<'button', ButtonProps> {
+interface Props extends PolymorphicComponentProps<'div', ButtonProps> {
   junoColor?: keyof typeof buttonColors;
 }
 
 const JunoButton: React.FC<Props> = ({ junoColor = 'default', ...props }) => {
-  return <Button {...props} color={buttonColors[junoColor]} />;
+  return <Button component="div" {...props} color={buttonColors[junoColor]} />;
 };
 
 export default JunoButton;
