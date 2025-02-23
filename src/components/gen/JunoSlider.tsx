@@ -4,11 +4,15 @@ import { useMove } from '@mantine/hooks';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '../Sizes';
 
 interface Props {
+  defaultValue?: number;
   allowNegativeValues?: boolean;
 }
 
-const JunoSlider = ({ allowNegativeValues = false }: Props) => {
-  const [value, setValue] = useState(0.2);
+const JunoSlider = ({ allowNegativeValues = false, defaultValue }: Props) => {
+  const defaultSliderValue =
+    (defaultValue !== undefined && defaultValue * (1 / 255)) ?? (allowNegativeValues ? 0.5 : 0);
+
+  const [value, setValue] = useState(+defaultSliderValue);
   const sliderValue = Math.floor(value * 255) - (allowNegativeValues ? 128 : 0);
   const { ref } = useMove(({ y }) => setValue(1 - y));
 
@@ -20,21 +24,21 @@ const JunoSlider = ({ allowNegativeValues = false }: Props) => {
             height: SLIDER_HEIGHT,
             backgroundColor: 'var(--mantine-color-dark-9)',
           }}
-          className="w-2.5 rounded-full relative cursor-pointer flex items-center"
+          className="relative flex w-2.5 cursor-pointer items-center rounded-full"
         >
           <div
             ref={ref}
             style={{
               height: `calc(100% - ${SLIDER_Y_PADDING * 2 + 3}px)`,
             }}
-            className="w-2.5 absolute flex flex-col items-center"
+            className="absolute flex w-2.5 flex-col items-center"
           >
             <div
               style={{
                 height: `${value * 100}%`,
                 backgroundColor: 'var(--mantine-color-dark-9)',
               }}
-              className="absolute bottom-0 w-full rounded-full "
+              className="absolute bottom-0 w-full rounded-full"
             />
             <JunoSliderThumb value={value} />
           </div>
@@ -53,7 +57,7 @@ const JunoSliderThumb = ({ value }: { value: number }) => {
         bottom: `calc(${value * 100}% - 8px)`,
         backgroundColor: 'var(--mantine-color-dark-4 )',
       }}
-      className="absolute rounded-sm w-8 h-4 justify-between flex items-center cursor-pointer"
+      className="absolute flex h-4 w-8 cursor-pointer items-center justify-between rounded-sm"
     >
       <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
       <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
