@@ -104,7 +104,7 @@ const Lines = ({
                 >
                   {(style) => (
                     <div
-                      style={{ width: `${128 + 15}%`, ...style }}
+                      style={{ width: 'calc(100% + 38px)', ...style }}
                       className="absolute flex items-center justify-between"
                     >
                       <Group w={14} justify="end" ta="right">
