@@ -46,6 +46,41 @@ const LineLabel = ({ children }: { children: string | ReactNode }) => (
   <Text size="xs">{children}</Text>
 );
 
+const fullRangeLines: HighlightedLine[] = [
+  { label: <LineLabel>0</LineLabel>, position: 0 },
+  { label: <LineLabel>5</LineLabel>, position: 5 },
+  { label: <LineLabel>10</LineLabel>, position: 10 },
+];
+const centeredRangeLines: HighlightedLine[] = [
+  {
+    label: <IconMinus size={12} stroke={3} />,
+    position: 0,
+  },
+  { label: <LineLabel>0</LineLabel>, position: 5 },
+  {
+    label: <IconPlus size={12} stroke={3} />,
+    position: 10,
+  },
+];
+
+const LineLabelContainer = ({ mounted, children }: { mounted: boolean; children: ReactNode }) => (
+  <Transition mounted={mounted} keepMounted duration={150} timingFunction="ease">
+    {(style) => (
+      <div
+        style={{ width: 'calc(100% + 38px)', ...style }}
+        className="absolute flex items-center justify-between"
+      >
+        <Group w={14} justify="end" ta="right">
+          {children}
+        </Group>
+        <Group w={14} ta="left">
+          {children}
+        </Group>
+      </div>
+    )}
+  </Transition>
+);
+
 const Lines = ({
   centeredRange,
   areLabelsShown,
@@ -53,22 +88,6 @@ const Lines = ({
   centeredRange: boolean;
   areLabelsShown: boolean;
 }) => {
-  const fullRangeLines: HighlightedLine[] = [
-    { label: <LineLabel>0</LineLabel>, position: 0 },
-    { label: <LineLabel>5</LineLabel>, position: 5 },
-    { label: <LineLabel>10</LineLabel>, position: 10 },
-  ];
-  const centeredRangeLines: HighlightedLine[] = [
-    {
-      label: <IconMinus size={12} stroke={2} />,
-      position: 0,
-    },
-    { label: <LineLabel>0</LineLabel>, position: 5 },
-    {
-      label: <IconPlus size={12} stroke={2} />,
-      position: 10,
-    },
-  ];
   const boldLines = centeredRange ? centeredRangeLines : fullRangeLines;
   return (
     <Stack
@@ -96,26 +115,9 @@ const Lines = ({
               className="relative m-0 flex w-full items-center justify-center"
             >
               {highLightedLine && (
-                <Transition
-                  mounted={areLabelsShown}
-                  keepMounted
-                  duration={150}
-                  timingFunction="ease"
-                >
-                  {(style) => (
-                    <div
-                      style={{ width: 'calc(100% + 38px)', ...style }}
-                      className="absolute flex items-center justify-between"
-                    >
-                      <Group w={14} justify="end" ta="right">
-                        {highLightedLine.label}
-                      </Group>
-                      <Group w={14} ta="left">
-                        {highLightedLine.label}
-                      </Group>
-                    </div>
-                  )}
-                </Transition>
+                <LineLabelContainer mounted={areLabelsShown}>
+                  {highLightedLine.label}
+                </LineLabelContainer>
               )}
             </div>
           );
