@@ -1,4 +1,5 @@
 import JunoButtonRadioGroup from '../gen/JunoButtonRadioGroup';
+import JunoSliderGroup from '../gen/JunoSliderGroup';
 import ModuleBox from '../gen/ModuleBox';
 
 const DCOModule = () => {
@@ -14,6 +15,12 @@ const DCOModule = () => {
           ] as const
         }
         defaultValue={16}
+      />
+      <JunoSliderGroup
+        controllers={[
+          { label: 'LFO', allowNegativeValues: true, defaultValue: 128 },
+          { label: 'PWM' },
+        ]}
       />
     </ModuleBox>
   );

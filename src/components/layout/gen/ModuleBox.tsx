@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Stack, Text } from '@mantine/core';
+import { Group, Stack, Text } from '@mantine/core';
 
 interface Props {
   title: string;
@@ -14,9 +14,9 @@ const ModuleBox = ({ title, children }: Props) => {
           {title}
         </Text>
       </Stack>
-      <Stack align="center" p="xs" h={205}>
+      <Group justify="center" align="stretch" p="xs" h={205}>
         {children}
-      </Stack>
+      </Group>
     </Stack>
   );
 };
