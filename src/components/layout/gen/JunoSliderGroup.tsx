@@ -5,7 +5,7 @@ import { useHover } from '@mantine/hooks';
 import JunoSlider from '@/components/gen/JunoSlider';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '@/components/Sizes';
 
-export type SliderController = {
+export type SliderData = {
   label: string;
   defaultValue?: number;
   allowNegativeValues?: boolean;
@@ -17,16 +17,16 @@ type HighlightedLine = {
 };
 
 interface Props {
-  controllers: SliderController[];
+  data: SliderData[];
   allowNegativeValues?: boolean;
 }
 
-const JunoSliderGroup = ({ controllers, allowNegativeValues = false }: Props) => {
+const JunoSliderGroup = ({ data, allowNegativeValues = false }: Props) => {
   const { hovered, ref } = useHover();
   return (
     <Group ref={ref} align="end" justify="center" gap={0} pos="relative" mx="sm">
       <Lines centeredRange={allowNegativeValues} areLabelsShown={hovered} />
-      {controllers.map(({ label, allowNegativeValues = false, defaultValue }, i) => {
+      {data.map(({ label, allowNegativeValues = false, defaultValue }, i) => {
         return (
           <Stack align="center" key={i}>
             <Text size="xs" fw="normal" w={42} ta="center" lh="1.2">

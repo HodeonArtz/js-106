@@ -7,7 +7,7 @@ const DCOModule = () => {
     <ModuleBox title="DCO">
       <JunoButtonRadioGroup
         groupLabel="range"
-        controllers={
+        data={
           [
             { label: "16'", value: 16 },
             { label: "8'", value: 8 },
@@ -17,10 +17,7 @@ const DCOModule = () => {
         defaultValue={16}
       />
       <JunoSliderGroup
-        controllers={[
-          { label: 'LFO', allowNegativeValues: true, defaultValue: 128 },
-          { label: 'PWM' },
-        ]}
+        data={[{ label: 'LFO', allowNegativeValues: true, defaultValue: 128 }, { label: 'PWM' }]}
       />
     </ModuleBox>
   );

@@ -2,19 +2,19 @@ import { useState } from 'react';
 import { Group, Radio, Stack, Text } from '@mantine/core';
 import JunoButtonRadio from '@/components/gen/JunoButtonRadio';
 
-export type RadioController = {
+export type RadioData = {
   label: string;
   value: string | number | undefined;
 };
 
-interface Props<T extends readonly RadioController[]> {
-  controllers: T;
+interface Props<T extends readonly RadioData[]> {
+  data: T;
   groupLabel?: string;
   defaultValue: T[number]['value'];
 }
 
-const JunoButtonRadioGroup = <T extends readonly RadioController[]>({
-  controllers,
+const JunoButtonRadioGroup = <T extends readonly RadioData[]>({
+  data,
   groupLabel,
   defaultValue,
 }: Props<T>) => {
@@ -30,7 +30,7 @@ const JunoButtonRadioGroup = <T extends readonly RadioController[]>({
         onChange={setValue}
       >
         <Group h="100%" gap={4}>
-          {controllers.map((controller) => {
+          {data.map((controller) => {
             return (
               <JunoButtonRadio
                 key={controller.value}
