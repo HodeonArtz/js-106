@@ -1,5 +1,7 @@
+import JunoSwitch from '@/components/gen/JunoSwitch';
 import JunoButtonRadioGroup from '../gen/JunoButtonRadioGroup';
 import JunoSliderGroup from '../gen/JunoSliderGroup';
+import JunoSwitchContainer from '../gen/JunoSwitchContainer';
 import ModuleBox from '../gen/ModuleBox';
 
 const DCOModule = () => {
@@ -19,6 +21,9 @@ const DCOModule = () => {
       <JunoSliderGroup
         data={[{ label: 'LFO', allowNegativeValues: true, defaultValue: 128 }, { label: 'PWM' }]}
       />
+      <JunoSwitchContainer>
+        <JunoSwitch />
+      </JunoSwitchContainer>
     </ModuleBox>
   );
 };
