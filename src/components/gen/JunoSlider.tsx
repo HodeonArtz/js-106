@@ -60,8 +60,8 @@ const JunoSliderThumb = ({ value }: { value: number }) => {
       }}
       className="absolute flex h-4 w-8 cursor-pointer items-center justify-between rounded-sm"
     >
-      <ThumbLine />
-      <ThumbLine />
+      <ThumbLine width={8} />
+      <ThumbLine width={8} />
     </div>
   );
 };

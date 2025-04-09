@@ -5,7 +5,7 @@ export interface ThumbLineProps
   width?: number | string;
 }
 
-const ThumbLine = ({ width = 8, ...props }: ThumbLineProps) => {
+const ThumbLine = ({ width = '100%', ...props }: ThumbLineProps) => {
   return (
     <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width, height: 3 }} {...props} />
   );

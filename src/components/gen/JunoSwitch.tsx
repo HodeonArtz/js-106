@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import { Box, Stack, Switch, Text } from '@mantine/core';
+import ThumbLine from '../styling/ThumbLine';
+import thumbClasses from './JunoSwitch.module.css';
 
 type SectionElement = ReactNode | string;
 
@@ -14,7 +16,12 @@ const JunoSwitch = ({ sections }: JunoSwitchProps) => {
   return (
     <Stack align="center">
       <JunoSwitchSection>{sections?.topSection}</JunoSwitchSection>
-      <Switch style={{ rotate: '90deg' }} />
+      <Switch
+        className={thumbClasses}
+        radius="xs"
+        style={{ rotate: '90deg' }}
+        thumbIcon={<ThumbLine />}
+      />
       <JunoSwitchSection>{sections?.bottomSection}</JunoSwitchSection>
     </Stack>
   );
