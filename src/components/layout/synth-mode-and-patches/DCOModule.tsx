@@ -22,7 +22,7 @@ const DCOModule = () => {
         data={[{ label: 'LFO', allowNegativeValues: true, defaultValue: 128 }, { label: 'PWM' }]}
       />
       <JunoSwitchContainer>
-        <JunoSwitch />
+        <JunoSwitch sections={{ bottomSection: 'f', topSection: 's' }} />
       </JunoSwitchContainer>
     </ModuleBox>
   );
