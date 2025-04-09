@@ -3,8 +3,8 @@ import { Box, Stack, Switch } from '@mantine/core';
 
 export interface JunoSwitchProps {
   sections?: {
-    topSection?: ReactNode;
-    bottomSection?: ReactNode;
+    topSection?: ReactNode | string;
+    bottomSection?: ReactNode | string;
   };
 }
 
