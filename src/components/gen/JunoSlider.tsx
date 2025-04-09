@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Group, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '../Sizes';
+import ThumbLine from '../styling/ThumbLine';
 
 interface Props {
   defaultValue?: number;
@@ -59,8 +60,8 @@ const JunoSliderThumb = ({ value }: { value: number }) => {
       }}
       className="absolute flex h-4 w-8 cursor-pointer items-center justify-between rounded-sm"
     >
-      <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
-      <div style={{ backgroundColor: 'var(--mantine-color-gray-1', width: 8, height: 3 }} />
+      <ThumbLine />
+      <ThumbLine />
     </div>
   );
 };
