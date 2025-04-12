@@ -1,4 +1,3 @@
-import { Icon123 } from '@tabler/icons-react';
 import JunoSwitch from '@/components/gen/JunoSwitch';
 import JunoButtonRadioGroup from '../gen/JunoButtonRadioGroup';
 import JunoSliderGroup from '../gen/JunoSliderGroup';
@@ -23,7 +22,7 @@ const DCOModule = () => {
         data={[{ label: 'LFO', allowNegativeValues: true, defaultValue: 128 }, { label: 'PWM' }]}
       />
       <JunoSwitchContainer>
-        <JunoSwitch sections={{ bottomSection: <Icon123 />, topSection: <Icon123 /> }} />
+        <JunoSwitch sections={{ bottomSection: 'MAN', topSection: 'LFO' }} />
       </JunoSwitchContainer>
     </ModuleBox>
   );
