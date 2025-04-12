@@ -17,10 +17,10 @@ const JunoSwitch = ({ sections }: JunoSwitchProps) => {
     <Stack align="center">
       <JunoSwitchSection>{sections?.topSection}</JunoSwitchSection>
       <Switch
-        className={thumbClasses}
+        classNames={thumbClasses}
         radius="xs"
         style={{ rotate: '90deg' }}
-        thumbIcon={<ThumbLine />}
+        thumbIcon={<ThumbLine style={{ rotate: '90deg' }} />}
       />
       <JunoSwitchSection>{sections?.bottomSection}</JunoSwitchSection>
     </Stack>
