@@ -21,7 +21,9 @@ const JunoButtonRadioGroup = <T extends readonly RadioData[]>({
   const [value, setValue] = useState(defaultValue);
   return (
     <Stack align="center">
-      <Text size="xs">{groupLabel?.toUpperCase()}</Text>
+      <Text size="xs" h={28}>
+        {groupLabel?.toUpperCase()}
+      </Text>
       <Radio.Group
         h="100%"
         name="favoriteFramework"

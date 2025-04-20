@@ -1,21 +1,23 @@
-import { Box, Radio, Stack, Text } from '@mantine/core';
+import { useState } from 'react';
+import { Box, Checkbox, Stack, Text } from '@mantine/core';
 import JunoButton from './JunoButton';
 
 interface Props {
   label?: string;
-  value: string | number | readonly string[] | undefined;
-  isChecked?: boolean;
+  value: string;
 }
 
-const JunoButtonRadio = ({ label, value, isChecked = false }: Props) => {
+const JunoButtonCheckbox = ({ label, value }: Props) => {
+  const [isChecked, setIsChecked] = useState(false);
   return (
-    <Radio.Card h="100%" w="fit-content" bd={0} value={`${value}`}>
+    <Checkbox.Card h="100%" w="fit-content" bd={0} value={value}>
       <Stack align="center" h="100%" justify="center" gap="sm">
         <Text size="xs">{label}</Text>
         <Stack align="center" justify="center">
           <Box pos="relative">
-            <Radio.Indicator
-              checked={isChecked}
+            <Checkbox.Indicator
+              onChange={() => setIsChecked((checked) => !checked)}
+              radius="xl"
               size="xs"
               color="red"
               iconColor="red"
@@ -25,8 +27,8 @@ const JunoButtonRadio = ({ label, value, isChecked = false }: Props) => {
           <JunoButton />
         </Stack>
       </Stack>
-    </Radio.Card>
+    </Checkbox.Card>
   );
 };
 
-export default JunoButtonRadio;
+export default JunoButtonCheckbox;

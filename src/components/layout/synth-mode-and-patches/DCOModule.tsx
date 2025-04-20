@@ -1,4 +1,5 @@
 import JunoSwitch from '@/components/gen/JunoSwitch';
+import JunoButtonCheckboxGroup from '../gen/JunoButtonCheckboxGroup';
 import JunoButtonRadioGroup from '../gen/JunoButtonRadioGroup';
 import JunoSliderGroup from '../gen/JunoSliderGroup';
 import JunoSwitchContainer from '../gen/JunoSwitchContainer';
@@ -24,6 +25,12 @@ const DCOModule = () => {
       <JunoSwitchContainer>
         <JunoSwitch sections={{ bottomSection: 'MAN', topSection: 'LFO' }} />
       </JunoSwitchContainer>
+      <JunoButtonCheckboxGroup
+        data={[
+          { label: 'PWM', value: 'PWM' },
+          { label: 'TNGL', value: 'TRIANGLE' },
+        ]}
+      />
     </ModuleBox>
   );
 };
