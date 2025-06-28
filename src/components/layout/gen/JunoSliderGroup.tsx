@@ -32,7 +32,7 @@ const JunoSliderGroup = ({ data, allowNegativeValues = false }: Props) => {
             <Text size="xs" fw="normal" w={42} ta="center" lh="1.2">
               {label.toUpperCase()}
             </Text>
-            <JunoSlider allowNegativeValues={allowNegativeValues} defaultValue={defaultValue} />
+            <JunoSlider allowNegative={allowNegativeValues} defaultValue={defaultValue} />
           </Stack>
         );
       })}

@@ -1,24 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Group, Tooltip } from '@mantine/core';
 import { useMove } from '@mantine/hooks';
+import { to8bit, toUnitNumber } from '@/util/conversion';
 import { SLIDER_HEIGHT, SLIDER_Y_PADDING } from '../Sizes';
 import ThumbLine from '../styling/ThumbLine';
 
 interface Props {
+  onChange?: (value: number) => void;
+  value?: number;
   defaultValue?: number;
-  allowNegativeValues?: boolean;
+  allowNegative?: boolean;
 }
 
-const JunoSlider = ({ allowNegativeValues = false, defaultValue }: Props) => {
-  const defaultSliderValue =
-    (defaultValue !== undefined && defaultValue * (1 / 255)) ?? (allowNegativeValues ? 0.5 : 0);
+const JunoSlider = ({ allowNegative = false, onChange, defaultValue, value: propValue }: Props) => {
+  const [value, setValue] = useState(defaultValue ? toUnitNumber(defaultValue) : 0);
+  const { ref } = useMove(({ y }) => {
+    setValue(propValue ? toUnitNumber(check8BitNegativity(propValue)) : 1 - y);
+  });
 
-  const [value, setValue] = useState(+defaultSliderValue);
-  const sliderValue = Math.floor(value * 255) - (allowNegativeValues ? 128 : 0);
-  const { ref } = useMove(({ y }) => setValue(1 - y));
+  useEffect(() => {
+    if (onChange) {
+      onChange(to8bit(value, allowNegative));
+    }
+  }, [value]);
 
   return (
-    <Tooltip label={sliderValue} position="bottom" offset={15} closeDelay={800}>
+    <Tooltip label={to8bit(value, allowNegative)} position="bottom" offset={15} closeDelay={800}>
       <Group justify="center" w={32}>
         <div
           style={{
